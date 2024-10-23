@@ -2,9 +2,11 @@ package com.plea11.ahms.models;
 
 import com.plea11.ahms.common.model.BaseDBModel;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -24,6 +26,7 @@ public class Hotels implements BaseDBModel, UserDetails {
     private String city;
     private long state;
     private long country;
+    private String roles;
 
     public long getId() {
         return id;
@@ -59,7 +62,7 @@ public class Hotels implements BaseDBModel, UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return Collections.singleton(new SimpleGrantedAuthority(getRoles()));
     }
 
     public String getPassword() {
@@ -141,5 +144,13 @@ public class Hotels implements BaseDBModel, UserDetails {
 
     public void setCountry(long country) {
         this.country = country;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 }

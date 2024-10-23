@@ -51,7 +51,7 @@ public class HotelServiceImpl implements HotelService {
         String receiver = hotel.getEmail();
         String subject = "Onboarded to Plea11";
         String content = String.format(
-                "Welcome Hotel %s,\n\nYour Log In Credentials are:\n\nUnique Id: %s\nPassword: %s\n\nThank You!",
+                "Welcome %s,\r\nYour Log In Credentials are:\r\n Unique Id: %s \r\nPassword: %s\r\n Thank You!",
                 hotel.getName(), hotel.getId(), password
         );
         emailService.sendSimpleMail(receiver, subject, content);
@@ -60,5 +60,12 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public List<Hotels> getAllHotels(Hotels hotels, Authentication authentication) throws AppServerException {
         return hotelDao.getAllHotels((Hotels) authentication.getPrincipal());
+    }
+
+    @Override
+    public Hotels changePassword(Hotels hotels, Authentication authentication) throws AppServerException {
+        String encryptPassword = passwordEncoder.encode(hotels.getPassword());
+        hotels.setPassword(encryptPassword);
+        return hotelDao.changePassword(hotels, (Hotels) authentication.getPrincipal());
     }
 }

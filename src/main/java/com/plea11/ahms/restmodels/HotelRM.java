@@ -19,6 +19,7 @@ public class HotelRM extends BaseRM {
     private String city;
     private long state;
     private long country;
+    private String roles;
 
     public long getId() {
         return id;
@@ -108,4 +109,11 @@ public class HotelRM extends BaseRM {
         this.country = country;
     }
 
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
 }

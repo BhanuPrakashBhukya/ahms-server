@@ -44,4 +44,10 @@ public class HotelController {
         return new ResponseEntity<List<HotelRM>>(hotelRM, HttpStatus.OK);
     }
 
+    @PutMapping("/changepassword")
+    public ResponseEntity<Void> changePassword(@RequestBody HotelRM hotel, Authentication authentication) throws AppServerException {
+        hotelService.changePassword(modelTranslator.getDBModel(hotel), authentication);
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
+    }
+
 }
