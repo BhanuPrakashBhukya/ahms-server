@@ -14,12 +14,14 @@ public class HotelModelTranslator extends AbstractModelTranslator<Hotels, HotelR
         dbModel.setName(restModel.getName());
         dbModel.setPhone(restModel.getPhone());
         dbModel.setEmail(restModel.getEmail());
+        dbModel.setPassword(restModel.getPassword());
         dbModel.setCategory(restModel.getCategory());
         dbModel.setAddressFirstLine(restModel.getAddressFirstLine());
         dbModel.setAddressSecondLine(restModel.getAddressSecondLine());
         dbModel.setCity(restModel.getCity());
         dbModel.setState(restModel.getState());
         dbModel.setCountry(restModel.getCountry());
+        dbModel.setRoles(restModel.getRoles());
 
         return dbModel;
     }
@@ -32,12 +34,14 @@ public class HotelModelTranslator extends AbstractModelTranslator<Hotels, HotelR
         restModel.setName(dbModel.getName());
         restModel.setPhone(dbModel.getPhone());
         restModel.setEmail(dbModel.getEmail());
+        restModel.setPassword(dbModel.getPassword());
         restModel.setCategory(dbModel.getCategory());
         restModel.setAddressFirstLine(dbModel.getAddressFirstLine());
         restModel.setAddressSecondLine(dbModel.getAddressSecondLine());
         restModel.setCity(dbModel.getCity());
         restModel.setState(dbModel.getState());
         restModel.setCountry(dbModel.getCountry());
+        restModel.setRoles(dbModel.getRoles());
 
         return restModel;
     }

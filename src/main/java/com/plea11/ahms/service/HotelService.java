@@ -12,4 +12,6 @@ public interface HotelService {
     Hotels register(Hotels hotel) throws AppServerException;
 
     List<Hotels> getAllHotels(Hotels hotels, Authentication authentication) throws AppServerException;
+
+    Hotels changePassword(Hotels dbModel, Authentication authentication) throws AppServerException;
 }

@@ -48,6 +48,7 @@ public class JwtUtil implements Serializable {
         return Jwts.builder()
                 .setAudience(String.valueOf(((Hotels) authentication.getPrincipal()).getId()))
                 .setSubject(hotels.getName())
+                .setId(String.valueOf(hotels.getId())).claim(Constants.AUTHORITIES_KEY, authorities)
                 .signWith(SignatureAlgorithm.HS256, Constants.SIGNING_KEY)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .claim(Constants.SERVICE_NAME, "ahms")
