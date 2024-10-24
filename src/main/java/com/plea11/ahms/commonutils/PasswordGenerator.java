@@ -3,6 +3,10 @@ package com.plea11.ahms.commonutils;
 import java.security.SecureRandom;
 import java.util.Random;
 
+/**
+ * @author bhukyabhanuprakash
+ */
+
 public class PasswordGenerator {
 
     private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

@@ -4,6 +4,10 @@ import com.plea11.ahms.common.translator.AbstractModelTranslator;
 import com.plea11.ahms.models.LogIn;
 import com.plea11.ahms.restmodels.LogInRM;
 
+/**
+ * @author bhukyabhanuprakash
+ */
+
 public class LoginModelTranslator extends AbstractModelTranslator<LogIn, LogInRM> {
 
     @Override

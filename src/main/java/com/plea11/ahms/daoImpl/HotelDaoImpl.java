@@ -5,6 +5,7 @@ import com.plea11.ahms.dao.HotelDao;
 import com.plea11.ahms.models.Hotels;
 import com.plea11.ahms.rowmapper.HotelRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -16,6 +17,10 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * @author bhukyabhanuprakash
+ */
 
 @Repository
 public class HotelDaoImpl implements HotelDao {
@@ -30,6 +35,8 @@ public class HotelDaoImpl implements HotelDao {
             + "F_ADDRESS_FIRST_LINE, F_ADDRESS_SECOND_LINE, F_CITY, F_STATE_ID, F_COUNTRY_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     public static String SELECT_HOTELS = "SELECT * FROM t_hotels ORDER BY f_created_timestamp";
+
+    private static String UPDATE_PASSWORD = "UPDATE t_hotels SET f_password = ? WHERE f_id = ?";
 
     @Override
     public Hotels register(Hotels hotel) throws DAOException {
@@ -74,6 +81,17 @@ public class HotelDaoImpl implements HotelDao {
             throw new DAOException("Internal server error", e);
         }
         return hotelsList;
+    }
+
+    @Override
+    public Hotels changePassword(Hotels hotels, Hotels hotel) throws DAOException {
+        Object[] args = new Object[] { hotels.getPassword(), hotels.getId() };
+        try {
+            int rowUpdated = jdbcTemplate.update(UPDATE_PASSWORD, args);
+        } catch (DataAccessException e) {
+            throw new DAOException("Error updating hotel password", e);
+        }
+        return null;
     }
 
 }

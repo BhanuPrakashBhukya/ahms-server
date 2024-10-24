@@ -1,5 +1,9 @@
 package com.plea11.ahms.common.model;
 
+/**
+ * @author bhukyabhanuprakash
+ */
+
 public class AuthenticationResponse {
 
     private String jwt;
