@@ -9,6 +9,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author bhukyabhanuprakash
+ */
+
 public class HotelRowMapper implements RowMapper<List<Hotels>> {
 
     DAOUtils daoUtils = DAOUtils.getInstance();

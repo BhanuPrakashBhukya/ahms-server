@@ -5,6 +5,10 @@ import com.plea11.ahms.models.Hotels;
 
 import java.util.Optional;
 
+/**
+ * @author bhukyabhanuprakash
+ */
+
 public interface LogInDao {
 
     Optional<Hotels> findHotelByUniqueId(String uniqueId) throws DAOException;

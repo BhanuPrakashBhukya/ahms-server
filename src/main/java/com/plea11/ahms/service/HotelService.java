@@ -7,6 +7,10 @@ import org.springframework.security.core.Authentication;
 
 import java.util.List;
 
+/**
+ * @author bhukyabhanuprakash
+ */
+
 public interface HotelService {
 
     Hotels register(Hotels hotel) throws AppServerException;

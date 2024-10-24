@@ -4,6 +4,10 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
+/**
+ * @author bhukyabhanuprakash
+ */
+
 public class DAOUtils {
     static DAOUtils dAOUtils = new DAOUtils();
 

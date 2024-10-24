@@ -18,6 +18,10 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author bhukyabhanuprakash
+ */
+
 @Repository
 public class HotelDaoImpl implements HotelDao {
 

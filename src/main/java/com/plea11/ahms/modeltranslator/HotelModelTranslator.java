@@ -4,6 +4,10 @@ import com.plea11.ahms.common.translator.AbstractModelTranslator;
 import com.plea11.ahms.models.Hotels;
 import com.plea11.ahms.restmodels.HotelRM;
 
+/**
+ * @author bhukyabhanuprakash
+ */
+
 public class HotelModelTranslator extends AbstractModelTranslator<Hotels, HotelRM> {
 
     @Override
