@@ -60,6 +60,9 @@ public class HotelRowMapper implements RowMapper<List<Hotels>> {
             if (daoUtils.hasColumn(rs,"f_roles")) {
                 hotel.setRoles(rs.getString("f_roles"));
             }
+            if (daoUtils.hasColumn(rs, "f_pin_code")) {
+                hotel.setPinCode(rs.getString("f_pin_code"));
+            }
             hotelList.add(hotel);
         } while (rs.next());
         return hotelList;

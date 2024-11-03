@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/hotel/v1")
+@CrossOrigin(origins = "http://localhost:4200")
 public class LoginController {
 
     private final Logger log = LoggerFactory.getLogger(LoginController.class);

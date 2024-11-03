@@ -26,6 +26,7 @@ public class HotelModelTranslator extends AbstractModelTranslator<Hotels, HotelR
         dbModel.setState(restModel.getState());
         dbModel.setCountry(restModel.getCountry());
         dbModel.setRoles(restModel.getRoles());
+        dbModel.setPinCode(restModel.getPinCode());
 
         return dbModel;
     }
@@ -46,6 +47,7 @@ public class HotelModelTranslator extends AbstractModelTranslator<Hotels, HotelR
         restModel.setState(dbModel.getState());
         restModel.setCountry(dbModel.getCountry());
         restModel.setRoles(dbModel.getRoles());
+        restModel.setPinCode(dbModel.getPinCode());
 
         return restModel;
     }
