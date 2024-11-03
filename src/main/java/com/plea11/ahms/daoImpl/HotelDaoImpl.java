@@ -2,8 +2,12 @@ package com.plea11.ahms.daoImpl;
 
 import com.plea11.ahms.common.exception.DAOException;
 import com.plea11.ahms.dao.HotelDao;
+import com.plea11.ahms.models.Country;
 import com.plea11.ahms.models.Hotels;
+import com.plea11.ahms.models.States;
+import com.plea11.ahms.rowmapper.CountryRowMapper;
 import com.plea11.ahms.rowmapper.HotelRowMapper;
+import com.plea11.ahms.rowmapper.StatesRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -38,6 +42,10 @@ public class HotelDaoImpl implements HotelDao {
 
     private static String UPDATE_PASSWORD = "UPDATE t_hotels SET f_password = ? WHERE f_id = ?";
 
+    private static String SELECT_COUNTRIES = "SELECT * FROM t_countries ORDER BY f_name ASC";
+
+    private static String SELECT_STATES = "SELECT * FROM t_states ORDER BY f_name ASC";
+
     @Override
     public Hotels register(Hotels hotel) throws DAOException {
 
@@ -55,8 +63,9 @@ public class HotelDaoImpl implements HotelDao {
                 ps.setString(6, hotel.getAddressFirstLine());
                 ps.setString(7, hotel.getAddressSecondLine());
                 ps.setString(8, hotel.getCity());
-                ps.setLong(9, hotel.getState());
-                ps.setLong(10, hotel.getCountry());
+                ps.setString(9, hotel.getPinCode());
+                ps.setLong(10, hotel.getState());
+                ps.setLong(11, hotel.getCountry());
 
                 return ps;
             }, keyHolder);
@@ -92,6 +101,34 @@ public class HotelDaoImpl implements HotelDao {
             throw new DAOException("Error updating hotel password", e);
         }
         return null;
+    }
+
+    @Override
+    public List<Country> getCountries() throws DAOException {
+        Object[] args = new Object[] {  };
+        List<Country> countries = new ArrayList<Country>();
+        try {
+            countries = jdbcTemplate.queryForObject(SELECT_COUNTRIES, new CountryRowMapper(), args);
+        } catch (EmptyResultDataAccessException e) {
+            throw new DAOException("No countries to fetch", e);
+        } catch (Exception e) {
+            throw new DAOException("Internal server error", e);
+        }
+        return countries;
+    }
+
+    @Override
+    public List<States> getStates() throws DAOException {
+        Object[] args = new Object[] {  };
+        List<States> states = new ArrayList<States>();
+        try {
+            states = jdbcTemplate.queryForObject(SELECT_STATES, new StatesRowMapper(), args);
+        } catch (EmptyResultDataAccessException e) {
+            throw new DAOException("No states to fetch", e);
+        } catch (Exception e) {
+            throw new DAOException("Internal server error", e);
+        }
+        return states;
     }
 
 }

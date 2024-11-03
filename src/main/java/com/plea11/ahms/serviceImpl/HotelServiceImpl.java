@@ -3,7 +3,9 @@ package com.plea11.ahms.serviceImpl;
 import com.plea11.ahms.common.exception.AppServerException;
 import com.plea11.ahms.commonutils.PasswordGenerator;
 import com.plea11.ahms.dao.HotelDao;
+import com.plea11.ahms.models.Country;
 import com.plea11.ahms.models.Hotels;
+import com.plea11.ahms.models.States;
 import com.plea11.ahms.restmodels.HotelRM;
 import com.plea11.ahms.service.HotelService;
 import org.slf4j.Logger;
@@ -67,5 +69,15 @@ public class HotelServiceImpl implements HotelService {
         String encryptPassword = passwordEncoder.encode(hotels.getPassword());
         hotels.setPassword(encryptPassword);
         return hotelDao.changePassword(hotels, (Hotels) authentication.getPrincipal());
+    }
+
+    @Override
+    public List<Country> getCountries() throws AppServerException {
+        return hotelDao.getCountries();
+    }
+
+    @Override
+    public List<States> getStates() throws AppServerException {
+        return hotelDao.getStates();
     }
 }
