@@ -27,6 +27,7 @@ public class Hotels implements BaseDBModel, UserDetails {
     private long state;
     private long country;
     private String roles;
+    private String pinCode;
 
     public long getId() {
         return id;
@@ -152,5 +153,13 @@ public class Hotels implements BaseDBModel, UserDetails {
 
     public void setRoles(String roles) {
         this.roles = roles;
+    }
+
+    public String getPinCode() {
+        return pinCode;
+    }
+
+    public void setPinCode(String pinCode) {
+        this.pinCode = pinCode;
     }
 }
