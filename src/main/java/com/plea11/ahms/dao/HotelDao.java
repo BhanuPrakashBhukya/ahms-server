@@ -2,6 +2,7 @@ package com.plea11.ahms.dao;
 
 import com.plea11.ahms.common.exception.DAOException;
 import com.plea11.ahms.models.Country;
+import com.plea11.ahms.models.HotelBranches;
 import com.plea11.ahms.models.Hotels;
 import com.plea11.ahms.models.States;
 
@@ -22,4 +23,6 @@ public interface HotelDao {
     List<Country> getCountries() throws DAOException;
 
     List<States> getStates() throws DAOException;
+
+    List<HotelBranches> getAllBranches(Hotels hotel) throws DAOException;
 }

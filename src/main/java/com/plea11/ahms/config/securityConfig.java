@@ -45,7 +45,7 @@ public class securityConfig {
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/hotel/v1/login", "hotel/v1/register", "hotel/v1/countries", "hotel/v1/states").permitAll()
+                        .requestMatchers("/hotel/v1/login", "hotel/v1/register", "hotel/v1/countries", "hotel/v1/states", "/actuator/**", "/actuator/prometheus").permitAll()
                         .requestMatchers("/hotel/v1/**").authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Stateless for REST

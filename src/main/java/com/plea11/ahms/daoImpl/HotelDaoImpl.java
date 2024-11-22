@@ -3,9 +3,11 @@ package com.plea11.ahms.daoImpl;
 import com.plea11.ahms.common.exception.DAOException;
 import com.plea11.ahms.dao.HotelDao;
 import com.plea11.ahms.models.Country;
+import com.plea11.ahms.models.HotelBranches;
 import com.plea11.ahms.models.Hotels;
 import com.plea11.ahms.models.States;
 import com.plea11.ahms.rowmapper.CountryRowMapper;
+import com.plea11.ahms.rowmapper.HotelBranchesRowMapper;
 import com.plea11.ahms.rowmapper.HotelRowMapper;
 import com.plea11.ahms.rowmapper.StatesRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +47,8 @@ public class HotelDaoImpl implements HotelDao {
     private static String SELECT_COUNTRIES = "SELECT * FROM t_countries ORDER BY f_name ASC";
 
     private static String SELECT_STATES = "SELECT * FROM t_states ORDER BY f_name ASC";
+
+    private static String SELECT_FROM_HOTEL_BRANCHES = "SELECT * FROM t_branches ORDER BY f_id DESC";
 
     @Override
     public Hotels register(Hotels hotel) throws DAOException {
@@ -129,6 +133,20 @@ public class HotelDaoImpl implements HotelDao {
             throw new DAOException("Internal server error", e);
         }
         return states;
+    }
+
+    @Override
+    public List<HotelBranches> getAllBranches(Hotels hotel) throws DAOException {
+        Object[] args = new Object[] {  };
+        List<HotelBranches> branches = new ArrayList<HotelBranches>();
+        try {
+            branches = jdbcTemplate.queryForObject(SELECT_FROM_HOTEL_BRANCHES, new HotelBranchesRowMapper(), args);
+        }catch (EmptyResultDataAccessException e) {
+
+        } catch (Exception e) {
+            throw new DAOException("Internal server error", e);
+        }
+        return branches;
     }
 
 }
