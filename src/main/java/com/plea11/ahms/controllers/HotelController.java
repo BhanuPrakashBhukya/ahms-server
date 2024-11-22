@@ -2,8 +2,11 @@ package com.plea11.ahms.controllers;
 
 import com.plea11.ahms.common.exception.AppServerException;
 import com.plea11.ahms.common.translator.IModelTranslator;
+import com.plea11.ahms.models.HotelBranches;
 import com.plea11.ahms.models.Hotels;
+import com.plea11.ahms.modeltranslator.HotelBranchesModelTranslator;
 import com.plea11.ahms.modeltranslator.HotelModelTranslator;
+import com.plea11.ahms.restmodels.HotelBranchesRM;
 import com.plea11.ahms.restmodels.HotelRM;
 import com.plea11.ahms.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +31,7 @@ public class HotelController {
     HotelService hotelService;
 
     IModelTranslator<Hotels, HotelRM> modelTranslator = new HotelModelTranslator();
+    IModelTranslator<HotelBranches, HotelBranchesRM> branchesModelTranslator = new HotelBranchesModelTranslator();
 
     @PostMapping("/register")
     public ResponseEntity<Void> register(@RequestBody HotelRM hotel) throws AppServerException {
@@ -49,6 +53,17 @@ public class HotelController {
     public ResponseEntity<Void> changePassword(@RequestBody HotelRM hotel, Authentication authentication) throws AppServerException {
         hotelService.changePassword(modelTranslator.getDBModel(hotel), authentication);
         return new ResponseEntity<Void>(HttpStatus.CREATED);
+    }
+
+    @GetMapping("/branches")
+    public ResponseEntity<List<HotelBranchesRM>> getAllBranches(Hotels hotel, Authentication authentication) throws AppServerException {
+        List<HotelBranchesRM> branchesRM = new ArrayList<HotelBranchesRM>();
+        List<HotelBranches> branches = new ArrayList<HotelBranches>();
+        branches = hotelService.getAllBranches(hotel, authentication);
+        for (HotelBranches branch : branches) {
+            branchesRM.add(branchesModelTranslator.getRESTModel(branch));
+        }
+        return new ResponseEntity<List<HotelBranchesRM>>(branchesRM, HttpStatus.OK);
     }
 
 }

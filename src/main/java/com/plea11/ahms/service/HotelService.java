@@ -2,6 +2,7 @@ package com.plea11.ahms.service;
 
 import com.plea11.ahms.common.exception.AppServerException;
 import com.plea11.ahms.models.Country;
+import com.plea11.ahms.models.HotelBranches;
 import com.plea11.ahms.models.Hotels;
 import com.plea11.ahms.models.States;
 import com.plea11.ahms.restmodels.HotelRM;
@@ -24,4 +25,6 @@ public interface HotelService {
     List<Country> getCountries() throws AppServerException;
 
     List<States> getStates() throws AppServerException;
+
+    List<HotelBranches> getAllBranches(Hotels hotel, Authentication authentication) throws AppServerException;
 }
